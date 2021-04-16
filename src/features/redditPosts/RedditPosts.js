@@ -31,12 +31,16 @@ const ContentWrapper = styled.div`
 `;
 const Picture = styled.img`
   display: flex;
-  max-width: 75%;
-  min-width: 45%;
-  max-height: 80%;
+  max-width: 100%;
+  min-width: 50%;
+  height: auto;
+  aspect-ratio: auto;
   @media (max-width: 64rem) {
-    max-width: 100%;
+    max-width: 60%;
+    min-width: 20%;
     max-height: 100%;
+    max-width: 60%;
+    min-width: 20%;
   }
 `;
 
@@ -191,6 +195,8 @@ export const RedditPosts = (props) => {
                 src={post.url_overridden_by_dest}
                 alt={post.title}
                 loading="lazy"
+                width="1000"
+                height="400"
               />
             ))
           )}

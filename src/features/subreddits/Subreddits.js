@@ -8,6 +8,7 @@ import {
   setSubredditPage,
   redditPostsSelector,
 } from "../redditPosts/redditPostsSlice";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const SubredditsWrapper = styled.div`
   margin-top: 2%;
@@ -77,6 +78,13 @@ const Icon = styled.img`
   margin: 2% 2% 5% 2%;
 `;
 
+const SkeletonWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 auto;
+`;
+
 const Subreddits = () => {
   const { subredditPage } = useSelector(redditPostsSelector);
   const { subreddits, loading, hasErrors } = useSelector(subredditsSelector);
@@ -92,7 +100,14 @@ const Subreddits = () => {
   };
 
   const renderSubreddits = () => {
-    if (loading) return <p>Loading recipes...</p>;
+    if (loading)
+      return (
+        <SkeletonWrapper>
+          <SkeletonTheme color="rgba(192,192,192,0.3)" hightlightColor="#fff">
+            <Skeleton duration={5} circle={true} height={50} width={50} />
+          </SkeletonTheme>
+        </SkeletonWrapper>
+      );
     if (hasErrors) return <p>Cannot display recipes...</p>;
 
     return subreddits.map((subreddit) => (

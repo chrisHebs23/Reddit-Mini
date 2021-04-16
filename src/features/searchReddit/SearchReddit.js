@@ -70,7 +70,7 @@ const SearchReddit = () => {
 
   return (
     <FormWrapper>
-      <LogoDisplay src={Logo} alt="Reddit Mini logo" />
+      <LogoDisplay src={Logo} alt="Reddit Mini logo" loading="lazy" />
       <LogoTitle>Reddit Mini</LogoTitle>
       <TheForm onSubmit={handleSubmit}>
         <input

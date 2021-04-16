@@ -8,11 +8,12 @@ import {
   selectFilteredPosts,
   setSearchText,
 } from "./redditPosts/redditPostsSlice";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const RedditPosts = lazy(() => import("./redditPosts/RedditPosts"));
 
 const PostWrapper = styled.div`
-  width: 95%;
+  width: 75%;
   margin: 0 auto;
 `;
 
@@ -35,7 +36,12 @@ const HomePage = () => {
   }
 
   const page = () => {
-    if (loading) return <p>Loading posts... </p>;
+    if (loading)
+      return (
+        <SkeletonTheme color="rgba(192,192,192,0.3)" hightlightColor="#fff">
+          <Skeleton count={5} duration={5} height={100} />
+        </SkeletonTheme>
+      );
     if (hasErrors) return <p>Cannot display posts...</p>;
 
     if (posts.length === 0) {
