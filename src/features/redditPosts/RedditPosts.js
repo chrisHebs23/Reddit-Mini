@@ -31,10 +31,12 @@ const ContentWrapper = styled.div`
 `;
 const Picture = styled.img`
   display: flex;
-  width: 75%;
-  height: auto;
+  max-width: 75%;
+  min-width: 45%;
+  max-height: 80%;
   @media (max-width: 64rem) {
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
   }
 `;
 
@@ -87,6 +89,7 @@ const Vote = styled.h4`
 
 const Up = styled(Upvote)`
   width: 2rem;
+  height: 2rem;
   color: #fff;
   &.up {
     color: green;
@@ -98,6 +101,7 @@ const Up = styled(Upvote)`
 
 const Down = styled(Downvote)`
   width: 2rem;
+  height: 2rem;
   color: #fff;
 
   &.down {

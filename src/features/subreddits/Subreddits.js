@@ -72,6 +72,7 @@ const Button = styled.button`
 
 const Icon = styled.img`
   width: 4rem;
+  height: 4rem;
   border-radius: 50%;
   margin: 2% 2% 5% 2%;
 `;
