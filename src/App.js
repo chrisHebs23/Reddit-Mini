@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { lazy, Suspense } from "react";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { Provider } from "react-redux";
+import subredditsReducer from "./features/subreddits/subredditSlice";
+import redditPostsReducer from "./features/redditPosts/redditPostsSlice";
+import styled from "styled-components";
+
+// import SearchReddit from "./features/searchReddit/SearchReddit";
+
+const HomePage = lazy(() => import("./features/home"));
+const Header = lazy(() => import("./features/header"));
+
+const Layout = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const store = configureStore({
+  reducer: combineReducers({
+    subreddits: subredditsReducer,
+    reddits: redditPostsReducer,
+  }),
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store} className="App">
+      <Layout>
+        <Suspense fallback={() => <div>Loading...</div>}>
+          <Header />
+          <HomePage />
+        </Suspense>
+      </Layout>
+    </Provider>
   );
 }
 
