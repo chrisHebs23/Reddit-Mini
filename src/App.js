@@ -11,7 +11,7 @@ const HomePage = lazy(() => import("./features/home"));
 const Header = lazy(() => import("./features/header"));
 
 const HTML = styled.div`
-  height: inherit;
+  min-height: 100%;
   &.dark {
     border-color: #6f2232;
     background-color: #1a1a1d;
@@ -46,6 +46,7 @@ const HTML = styled.div`
 const Layout = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100%;
 `;
 const store = configureStore({
   reducer: combineReducers({
