@@ -11,11 +11,8 @@ import {
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const SubredditsWrapper = styled.div`
-  margin: 0 auto;
-  width: 99%;
-  height: fit-content;
+  width: 100%;
   display: flex;
-  justify-content: center;
   flex-direction: row;
   overflow-x: scroll;
   ::-webkit-scrollbar {
@@ -38,10 +35,6 @@ const SubredditsWrapper = styled.div`
 const ButtonWrapper = styled.div`
   width: 100%;
   margin: 1%;
-  display: flex;
-  justify-items: center;
-  align-items: center;
-  flex-direction: column;
 `;
 
 const Button = styled.button`
@@ -50,12 +43,12 @@ const Button = styled.button`
   align-items: center;
   height: auto;
   flex-direction: column;
-  margin: 1%;
+  margin: 1% 6%;
   background: transparent;
+  padding: 0%;
   color: #fff;
   :hover {
     border-top: 0.3rem solid #c3073f;
-    border-radius: 5%;
     background: rgba(111, 34, 50, 0.5);
   }
 
@@ -71,7 +64,6 @@ const Icon = styled.img`
   height: 4rem;
   border-radius: 50%;
   margin: 2% 2% 5% 2%;
-  color: black;
 `;
 
 const SkeletonWrapper = styled.div`
@@ -130,12 +122,7 @@ const Subreddits = (props) => {
     ));
   };
 
-  return (
-    <>
-      {/* <Title>Subreddits</Title> */}
-      <SubredditsWrapper>{renderSubreddits()}</SubredditsWrapper>
-    </>
-  );
+  return <SubredditsWrapper>{renderSubreddits()}</SubredditsWrapper>;
 };
 
 export default Subreddits;

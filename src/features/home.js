@@ -14,6 +14,7 @@ const RedditPosts = lazy(() => import("./redditPosts/RedditPosts"));
 
 const Container = styled.div`
   width: 100%;
+  height: 100%;
 `;
 
 const PostWrapper = styled.div`

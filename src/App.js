@@ -10,14 +10,8 @@ import styled from "styled-components";
 const HomePage = lazy(() => import("./features/home"));
 const Header = lazy(() => import("./features/header"));
 
-const Layout = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const HTML = styled.html`
-  width: 100%;
-  height: 100%;
+const HTML = styled.div`
+  height: inherit;
   &.dark {
     border-color: #6f2232;
     background-color: #1a1a1d;
@@ -49,6 +43,10 @@ const HTML = styled.html`
   }
 `;
 
+const Layout = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 const store = configureStore({
   reducer: combineReducers({
     subreddits: subredditsReducer,
