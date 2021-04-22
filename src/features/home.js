@@ -12,9 +12,19 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const RedditPosts = lazy(() => import("./redditPosts/RedditPosts"));
 
+const Container = styled.div`
+  width: 100%;
+`;
+
 const PostWrapper = styled.div`
-  width: 75%;
+  width: 85%;
+  height: 100%;
   margin: 0 auto;
+  display: inline;
+  z-index: 1000;
+  @media (max-width: 42rem) {
+    width: 95%;
+  }
 `;
 
 const HomePage = () => {
@@ -53,7 +63,7 @@ const HomePage = () => {
       );
     }
     return (
-      <div>
+      <Container>
         <Suspense fallback={() => <div>Loading...</div>}>
           {posts.map((post, index) => (
             <RedditPosts
@@ -64,7 +74,7 @@ const HomePage = () => {
             />
           ))}
         </Suspense>
-      </div>
+      </Container>
     );
   };
 

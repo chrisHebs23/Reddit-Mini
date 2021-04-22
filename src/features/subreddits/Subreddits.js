@@ -11,10 +11,11 @@ import {
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const SubredditsWrapper = styled.div`
-  margin-top: 2%;
-  width: 100%;
+  margin: 0 auto;
+  width: 99%;
   height: fit-content;
   display: flex;
+  justify-content: center;
   flex-direction: row;
   overflow-x: scroll;
   ::-webkit-scrollbar {
@@ -23,19 +24,14 @@ const SubredditsWrapper = styled.div`
 
   /* Track */
   ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px #fff;
+    box-shadow: inset 0 0 5px #c3073f;
     border-radius: 10px;
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #fff;
-    border-radius: 10px;
-  }
-
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
     background: #c3073f;
+    border-radius: 10px;
   }
 `;
 
@@ -56,8 +52,7 @@ const Button = styled.button`
   flex-direction: column;
   margin: 1%;
   background: transparent;
-  color: white;
-
+  color: #fff;
   :hover {
     border-top: 0.3rem solid #c3073f;
     border-radius: 5%;
@@ -76,6 +71,7 @@ const Icon = styled.img`
   height: 4rem;
   border-radius: 50%;
   margin: 2% 2% 5% 2%;
+  color: black;
 `;
 
 const SkeletonWrapper = styled.div`
@@ -85,7 +81,7 @@ const SkeletonWrapper = styled.div`
   margin: 0 auto;
 `;
 
-const Subreddits = () => {
+const Subreddits = (props) => {
   const { subredditPage } = useSelector(redditPostsSelector);
   const { subreddits, loading, hasErrors } = useSelector(subredditsSelector);
   const dispatch = useDispatch();
@@ -115,7 +111,9 @@ const Subreddits = () => {
         <Button
           title={subreddit.title}
           className={
-            subredditPage === subreddit.display_name_prefixed ? "active" : ""
+            subredditPage === subreddit.display_name_prefixed
+              ? `active ${props.display}`
+              : props.display
           }
           onClick={() => handleClick(subreddit.display_name_prefixed)}
         >

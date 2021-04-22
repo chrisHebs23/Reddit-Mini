@@ -6,16 +6,20 @@ import { Upvote } from "@styled-icons/boxicons-regular/Upvote";
 import { Downvote } from "@styled-icons/boxicons-regular/Downvote";
 
 const Postbox = styled.div`
-  border: 3px solid #6f2232;
+  border-width: 3px;
+  border-style: solid;
   margin-bottom: 2%;
 `;
 const Post = styled.div`
   display: flex;
   flex-direction: row;
+  width: 100%;
+  overflow: wrap;
+  word-wrap: break-word;
 `;
 
 const Upvotes = styled.div`
-  margin: 2%;
+  margin: 0 1%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,11 +28,24 @@ const Upvotes = styled.div`
 const ContentWrapper = styled.div`
   margin: 2%;
   display: flex;
-  width: 100%;
+  width: 95%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-wrap: wrap;
+  @media (max-width: 42rem) {
+    width: 88%;
+  }
 `;
+const Text = styled.p`
+  width: 100%;
+  font-size: 1rem;
+  text-align: center;
+  white-space: break-spaces;
+  overflow-wrap: break-word;
+`;
+
 const Picture = styled.img`
   display: flex;
   max-width: 100%;
@@ -36,11 +53,9 @@ const Picture = styled.img`
   height: auto;
   aspect-ratio: auto;
   @media (max-width: 64rem) {
-    max-width: 60%;
+    max-width: 75%;
     min-width: 20%;
-    max-height: 100%;
-    max-width: 60%;
-    min-width: 20%;
+    height: auto;
   }
 `;
 
@@ -49,7 +64,7 @@ const Line = styled.div`
   width: 20%;
   height: 2%;
   left: 43%;
-  border-top: 1px solid #fff;
+  border-top: 1px solid;
   position: absolute;
 `;
 
@@ -89,30 +104,50 @@ const Vote = styled.h4`
   &.down {
     color: red;
   }
+  @media (max-width: 64rem) {
+    font-size: 0.8rem;
+  }
 `;
 
 const Up = styled(Upvote)`
   width: 2rem;
   height: 2rem;
-  color: #fff;
+
   &.up {
     color: green;
   }
   :hover {
     color: green;
   }
+  @media (max-width: 64rem) {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
 `;
 
 const Down = styled(Downvote)`
   width: 2rem;
   height: 2rem;
-  color: #fff;
 
   &.down {
     color: red;
   }
   :hover {
     color: red;
+  }
+  @media (max-width: 64rem) {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+`;
+
+const PostTitle = styled.h3`
+  margin: 3% 0;
+  width: 100%;
+  height: 100%;
+  @media (max-width: 64rem) {
+    width: 95%;
+    font-size: 1.2rem;
   }
 `;
 
@@ -121,7 +156,7 @@ const getTimestamp = (time) => {
   // Hours part from the timestamp
   const hours = date.getHours();
   // Minutes part from the timestamp
-  const minutes = "0" + date.getMinutes();
+  const minutes = date.getMinutes();
   // Seconds part from the timestamp
 
   if (hours === 1) {
@@ -166,7 +201,7 @@ export const RedditPosts = (props) => {
   };
 
   return (
-    <Postbox key={`pots-${post.id}`}>
+    <Postbox key={`pots-${post.id}`} className="shadow">
       <Post>
         <Upvotes>
           <Up className={vote} onClick={() => setVote("up")} loading="lazy" />
@@ -178,11 +213,11 @@ export const RedditPosts = (props) => {
           />
         </Upvotes>
         <ContentWrapper>
-          <h3>{post.title}</h3>
+          <PostTitle>{post.title}</PostTitle>
           {!post.url_overridden_by_dest ? (
-            <p>{post.selftext}</p>
+            <Text className="text">{post.selftext}</Text>
           ) : (
-            ((<p>{post.selftext}</p>),
+            ((<Text>`${post.selftext}`</Text>),
             post.is_video ? (
               <video width="750" height="500" controls autoPlay loading="lazy">
                 <source

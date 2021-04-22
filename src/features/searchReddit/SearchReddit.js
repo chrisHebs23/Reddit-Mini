@@ -3,20 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { setSearchText } from "../redditPosts/redditPostsSlice";
 import styled from "styled-components";
 import { SearchAlt } from "@styled-icons/boxicons-regular/SearchAlt";
-import Logo from "./logo.png";
 
 const FormWrapper = styled.div`
   width: 100%;
+  height: 5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-`;
-
-const LogoDisplay = styled.img`
-  margin-left: 5%;
-  width: 7rem;
-  justify-self: flex-start;
 `;
 
 const Button = styled.button`
@@ -30,22 +24,31 @@ const Button = styled.button`
 
 const Search = styled(SearchAlt)`
   width: 1.4rem;
+  margin
 `;
 
 const LogoTitle = styled.h2`
   position: absolute;
+  margin-left: 3%;
   left: 9.5rem;
-  text-align: left;
+
   @media (max-width: 64rem) {
     display: none;
   }
 `;
 
 const TheForm = styled.form`
-  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  padding: 0;
+  margin: 0;
 
+  input {
+    width: 72%;
+    float: left;
+  }
   @media (max-width: 64rem) {
-    display: 0;
+    left: 3%;
   }
 `;
 
@@ -70,7 +73,6 @@ const SearchReddit = () => {
 
   return (
     <FormWrapper>
-      <LogoDisplay src={Logo} alt="Reddit Mini logo" loading="lazy" />
       <LogoTitle>Reddit Mini</LogoTitle>
       <TheForm onSubmit={handleSubmit}>
         <input
