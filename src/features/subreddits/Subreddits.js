@@ -28,7 +28,7 @@ const SubredditsWrapper = styled.div`
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background: #c3073f;
-    border-radius: 10px;
+    border-radius: 12px;
   }
 `;
 
